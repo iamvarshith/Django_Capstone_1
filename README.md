@@ -11,6 +11,6 @@ This project is based on Dango frame work.
 <li>Jinja2</li>
 <li>Postgres as Database</li>
 <li>SqlAlchemy</li>
-<li>Html, Css, Js, Ajax, Ect</li>
+<li>Html, Css, Js, Ajax, Etc</li>
 
 </ul>
