@@ -5,42 +5,59 @@
     <title>Title</title>
 </head>
 <style>
-table {
-  font-family: arial, sans-serif;
-  border-collapse: collapse;
-  width: 100%;
-}
+     body {
+        background: #aa4b6b; /* fallback for old browsers */
+        background: -webkit-linear-gradient(to right, #3b8d99, #6b6b83, #aa4b6b); /* Chrome 10-25, Safari 5.1-6 */
+        background: linear-gradient(to right, #3b8d99, #6b6b83, #aa4b6b); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 
-td, th {
-  border: 1px solid #dddddd;
-  text-align: left;
-  padding: 8px;
-}
+    }
+    table {
+        font-family: arial, sans-serif;
+        border-collapse: collapse;
+        width: 100%;
+    }
 
-tr:nth-child(even) {
-  background-color: #dddddd;
-}
+    td, th {
+        border: 1px solid #dddddd;
+        text-align: left;
+        padding: 8px;
+    }
+
+    tr:nth-child(even) {
+        background-color: #dddddd;
+    }
+
+    .container {
+        background-color: white;
+        margin-left: 10%;
+        margin-top: 5%;
+        margin-right: 10%;
+    }
 </style>
 <body>
-<table>
-    <tr>
-        <th>Name</th>
-        <th>Age</th>
-        <th>Slot</th>
-        <th>Cardio</th>
-        <th>weight</th>
-        <th>Image </th>
-    </tr>
-    {% for members in gym_members %}
-    <tr>
-         <th>{{ members.name }}</th>
-        <th>{{ members.age }}</th>
-        <th>{{ members.slot }}</th>
-        <th>{{ members.cardio }}</th>
-        <th>{{ members.weight }}</th>
-        <th><a href="{{members.image.url}}"><img height=50 width=50 src="{{members.image.url}}" alt="{{members.title}}"></a> </th>
-    </tr>
-    {% endfor %}
-</table>
+<div class="container">
+<div style="text-align: center;"><h1>Read in cRud</h1></div>
+    <table>
+        <tr>
+            <th>Name</th>
+            <th>Age</th>
+            <th>Slot</th>
+            <th>Cardio</th>
+            <th>weight</th>
+            <th>Image</th>
+        </tr>
+        {% for members in gym_members %}
+            <tr>
+                <th>{{ members.name }}</th>
+                <th>{{ members.age }}</th>
+                <th>{{ members.slot }}</th>
+                <th>{{ members.cardio }}</th>
+                <th>{{ members.weight }}</th>
+                <th><a href="{{ members.image.url }}"><img height=50 width=50 src="{{ members.image.url }}"
+                                                           alt="{{ members.title }}"></a></th>
+            </tr>
+        {% endfor %}
+    </table>
+</div>
 </body>
 </html>
