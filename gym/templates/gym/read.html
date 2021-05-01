@@ -36,9 +36,9 @@ tr:nth-child(even) {
          <th>{{ members.name }}</th>
         <th>{{ members.age }}</th>
         <th>{{ members.slot }}</th>
-        <th>{{ gym.cardio }}</th>
-        <th>{{ gym.weight }}</th>
-        <th>{{ gym.image }} </th>
+        <th>{{ members.cardio }}</th>
+        <th>{{ members.weight }}</th>
+        <th><a href="{{members.image.url}}"><img height=50 width=50 src="{{members.image.url}}" alt="{{members.title}}"></a> </th>
     </tr>
     {% endfor %}
 </table>

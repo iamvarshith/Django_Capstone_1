@@ -4,7 +4,48 @@
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
-<body>
+<style>
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
 
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
+</style>
+<body>
+<table>
+    <tr>
+        <th>Name</th>
+        <th>Age</th>
+        <th>Slot</th>
+        <th>Cardio</th>
+        <th>weight</th>
+        <th>Image </th>
+        <th> Delete </th>
+        <th>Update</th>
+    </tr>
+    {% for members in gym_members %}
+    <tr>
+         <td>{{ members.name }}</td>
+        <td>{{ members.age }}</td>
+        <td>{{ members.slot }}</td>
+        <td>{{ members.cardio }}</td>
+        <td>{{ members.weight }}</td>
+
+        <td><a href="{{members.image.url}}"><img height=50 width=50 src="{{members.image.url}}" alt="{{members.title}}"></a> </td>
+        <td><a href = "delete/{{ members.pk }}">Delete</a></td>
+        <td><a href = "update/{{ members.pk }}">Update</a></td>
+    </tr>
+    {% endfor %}
+</table>
 </body>
 </html>

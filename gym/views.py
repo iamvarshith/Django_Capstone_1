@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.views.generic import TemplateView, View
 from django.http import HttpResponse
 from .models import Gym
@@ -35,13 +35,43 @@ class ReadView(View):
     template_name = 'gym/read.html'
 
     def get(self, request):
-        contex = {'gym_members': Gym.objects.all()}
-        return render(request, self.template_name, context=contex)
+        context = {'gym_members': Gym.objects.all()}
+        return render(request, self.template_name, context=context)
 
 
-class UpdateView(TemplateView):
+class UpdateView(View):
     template_name = 'gym/update.html'
 
+    def get(self, request,pk):
+        context = {'gym_members': Gym.objects.get(pk=pk)}
+        return render(request, self.template_name, context=context)
 
-class DeleteView(TemplateView):
+    def post(self, request,pk):
+        name = request.POST['name']
+        age = request.POST['age']
+        slot = request.POST['slot']
+        weight = request.POST['weight']
+        cardio = request.POST['cardio']
+        image = request.FILES['image']
+        update_item = Gym.objects.get(pk=pk)
+        update_item.name=name
+        update_item.age=age
+        update_item.slot=slot
+        update_item.weight=weight
+        update_item.cardio = cardio
+        update_item.image = image
+        update_item.save()
+        return redirect('read')
+
+
+class DeleteView(View):
     template_name = 'gym/delete.html'
+
+    def get(self, request, pk=None):
+        if pk is None:
+            context = {'gym_members': Gym.objects.all()}
+            return render(request, self.template_name, context=context)
+        else:
+            delete_item = Gym.objects.get(pk=pk)
+            delete_item.delete()
+            return redirect('delete')
